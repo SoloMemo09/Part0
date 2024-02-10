@@ -1,0 +1,17 @@
+sequenceDiagram
+    participant browser
+    participant server
+    participant database
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/spa/new_note
+    activate server
+    server->>database: Guardar nueva nota
+    activate database
+    database-->>server: Confirmación de guardado
+    deactivate database
+    server-->>browser: Redirigir a la página de notas
+    deactivate server
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/spa/notes
+    activate server
+    server-->>browser: Lista actualizada de notas
+    deactivate server
